@@ -31606,7 +31606,7 @@ var IncomingMessage = exports.IncomingMessage = function (xhr, response, mode, f
 		self.url = response.url
 		self.statusCode = response.status
 		self.statusMessage = response.statusText
-		
+
 		response.headers.forEach(function (header, key){
 			self.headers[key.toLowerCase()] = header
 			self.rawHeaders.push(key, header)
@@ -31736,7 +31736,7 @@ IncomingMessage.prototype._onXHRProgress = function () {
 				self.push(new Buffer(response))
 				break
 			}
-			// Falls through in IE8	
+			// Falls through in IE8
 		case 'text':
 			try { // This will fail when readyState = 3 in IE9. Switch mode and wait for readyState = 4
 				response = xhr.responseText
@@ -32793,13 +32793,13 @@ Script.prototype.runInContext = function (context) {
     if (!(context instanceof Context)) {
         throw new TypeError("needs a 'context' argument.");
     }
-    
+
     var iframe = document.createElement('iframe');
     if (!iframe.style) iframe.style = {};
     iframe.style.display = 'none';
-    
+
     document.body.appendChild(iframe);
-    
+
     var win = iframe.contentWindow;
     var wEval = win.eval, wExecScript = win.execScript;
 
@@ -32808,7 +32808,7 @@ Script.prototype.runInContext = function (context) {
         wExecScript.call(win, 'null');
         wEval = win.eval;
     }
-    
+
     forEach(Object_keys(context), function (key) {
         win[key] = context[key];
     });
@@ -32817,11 +32817,11 @@ Script.prototype.runInContext = function (context) {
             win[key] = context[key];
         }
     });
-    
+
     var winKeys = Object_keys(win);
 
     var res = wEval.call(win, this.code);
-    
+
     forEach(Object_keys(win), function (key) {
         // Avoid copying circular objects like `top` and `window` by only
         // updating existing context properties or new properties in the `win`
@@ -32836,9 +32836,9 @@ Script.prototype.runInContext = function (context) {
             defineProp(context, key, win[key]);
         }
     });
-    
+
     document.body.removeChild(iframe);
-    
+
     return res;
 };
 
@@ -34106,8 +34106,8 @@ module.exports = {
   contractToken: 'smart_contract/token.sol',
   contractReserveToken: 'smart_contract/reservetoken.sol',
   contractBitDexAddrs: [
-    { addr: '0xbca13cbebff557143e8ad089192380e9c9a58c70', info: 'Deployed 08/10/2017' },
     { addr: '0xafeb70ae58052456772f0d5e7a42e13fcd2a429e', info: 'Deployed 03/08/2019' },
+    { addr: '0xbca13cbebff557143e8ad089192380e9c9a58c70', info: 'Deployed 08/10/2017 - Deprecated' },
   ],
   ethTestnet: false,
   ethProvider: 'http://localhost:8545',
@@ -44580,7 +44580,7 @@ var crypto = require('crypto')
  * Valid keys.
  */
 
-var keys = 
+var keys =
   [ 'acl'
   , 'location'
   , 'logging'
@@ -44619,7 +44619,7 @@ module.exports.authorization = authorization
  * @param {Object} options
  * @return {String}
  * @api private
- */ 
+ */
 
 function hmacSha1 (options) {
   return crypto.createHmac('sha1', options.secret).update(options.message).digest('base64')
@@ -44628,8 +44628,8 @@ function hmacSha1 (options) {
 module.exports.hmacSha1 = hmacSha1
 
 /**
- * Create a base64 sha1 HMAC for `options`. 
- * 
+ * Create a base64 sha1 HMAC for `options`.
+ *
  * @param {Object} options
  * @return {String}
  * @api private
@@ -44642,10 +44642,10 @@ function sign (options) {
 module.exports.sign = sign
 
 /**
- * Create a base64 sha1 HMAC for `options`. 
+ * Create a base64 sha1 HMAC for `options`.
  *
  * Specifically to be used with S3 presigned URLs
- * 
+ *
  * @param {Object} options
  * @return {String}
  * @api private
@@ -44661,7 +44661,7 @@ module.exports.signQuery= signQuery
  * Return a string for sign() with the given `options`.
  *
  * Spec:
- * 
+ *
  *    <verb>\n
  *    <md5>\n
  *    <content-type>\n
@@ -44677,7 +44677,7 @@ module.exports.signQuery= signQuery
 function stringToSign (options) {
   var headers = options.amazonHeaders || ''
   if (headers) headers += '\n'
-  var r = 
+  var r =
     [ options.verb
     , options.md5
     , options.contentType
@@ -44693,7 +44693,7 @@ module.exports.queryStringToSign = stringToSign
  * for S3 presigned URLs
  *
  * Spec:
- * 
+ *
  *    <date>\n
  *    <resource>
  *
@@ -59485,7 +59485,7 @@ require("./src/core/time_span.js");
 	};
 
 	/**
-	 * Compares this instance to a Date object and returns an number indication of their relative values.  
+	 * Compares this instance to a Date object and returns an number indication of their relative values.
 	 * @param {Date}     Date object to compare [Required]
 	 * @return {Number}  -1 = this is lessthan date. 0 = values are equal. 1 = this is greaterthan date.
 	 */
@@ -59494,7 +59494,7 @@ require("./src/core/time_span.js");
 	};
 
 	/**
-	 * Compares this instance to another Date object and returns true if they are equal.  
+	 * Compares this instance to another Date object and returns true if they are equal.
 	 * @param {Date}     Date object to compare. If no date to compare, new Date() [now] is used.
 	 * @return {Boolean} true if dates are equal. false if they are not equal.
 	 */
@@ -59534,19 +59534,19 @@ require("./src/core/time_span.js");
 	 * Determines if the current Date instance occurs today.
 	 * @return {Boolean} true if this date instance is 'today', otherwise false.
 	 */
-	
+
 	/**
-	 * Determines if the current Date instance occurs on the same Date as the supplied 'date'. 
-	 * If no 'date' to compare to is provided, the current Date instance is compared to 'today'. 
+	 * Determines if the current Date instance occurs on the same Date as the supplied 'date'.
+	 * If no 'date' to compare to is provided, the current Date instance is compared to 'today'.
 	 * @param {date}     Date object to compare. If no date to compare, the current Date ("now") is used.
 	 * @return {Boolean} true if this Date instance occurs on the same Day as the supplied 'date'.
 	 */
 	$P.isToday = $P.isSameDay = function (date) {
 		return this.clone().clearTime().equals((date || new Date()).clone().clearTime());
 	};
-	
+
 	/**
-	 * Adds the specified number of milliseconds to this instance. 
+	 * Adds the specified number of milliseconds to this instance.
 	 * @param {Number}   The number of milliseconds to add. The number can be positive or negative [Required]
 	 * @return {Date}    this
 	 */
@@ -59557,7 +59557,7 @@ require("./src/core/time_span.js");
 	};
 
 	/**
-	 * Adds the specified number of seconds to this instance. 
+	 * Adds the specified number of seconds to this instance.
 	 * @param {Number}   The number of seconds to add. The number can be positive or negative [Required]
 	 * @return {Date}    this
 	 */
@@ -59567,7 +59567,7 @@ require("./src/core/time_span.js");
 	};
 
 	/**
-	 * Adds the specified number of seconds to this instance. 
+	 * Adds the specified number of seconds to this instance.
 	 * @param {Number}   The number of seconds to add. The number can be positive or negative [Required]
 	 * @return {Date}    this
 	 */
@@ -59577,7 +59577,7 @@ require("./src/core/time_span.js");
 	};
 
 	/**
-	 * Adds the specified number of hours to this instance. 
+	 * Adds the specified number of hours to this instance.
 	 * @param {Number}   The number of hours to add. The number can be positive or negative [Required]
 	 * @return {Date}    this
 	 */
@@ -59587,7 +59587,7 @@ require("./src/core/time_span.js");
 	};
 
 	/**
-	 * Adds the specified number of days to this instance. 
+	 * Adds the specified number of days to this instance.
 	 * @param {Number}   The number of days to add. The number can be positive or negative [Required]
 	 * @return {Date}    this
 	 */
@@ -59598,7 +59598,7 @@ require("./src/core/time_span.js");
 	};
 
 	/**
-	 * Adds the specified number of weekdays (ie - not sat or sun) to this instance. 
+	 * Adds the specified number of weekdays (ie - not sat or sun) to this instance.
 	 * @param {Number}   The number of days to add. The number can be positive or negative [Required]
 	 * @return {Date}    this
 	 */
@@ -59631,7 +59631,7 @@ require("./src/core/time_span.js");
 	};
 
 	/**
-	 * Adds the specified number of weeks to this instance. 
+	 * Adds the specified number of weeks to this instance.
 	 * @param {Number}   The number of weeks to add. The number can be positive or negative [Required]
 	 * @return {Date}    this
 	 */
@@ -59642,7 +59642,7 @@ require("./src/core/time_span.js");
 
 
 	/**
-	 * Adds the specified number of months to this instance. 
+	 * Adds the specified number of months to this instance.
 	 * @param {Number}   The number of months to add. The number can be positive or negative [Required]
 	 * @return {Date}    this
 	 */
@@ -59664,7 +59664,7 @@ require("./src/core/time_span.js");
 	};
 
 	/**
-	 * Adds the specified number of years to this instance. 
+	 * Adds the specified number of years to this instance.
 	 * @param {Number}   The number of years to add. The number can be positive or negative [Required]
 	 * @return {Date}    this
 	 */
@@ -59678,9 +59678,9 @@ require("./src/core/time_span.js");
 	 * Example
 	<pre><code>
 	Date.today().add( { days: 1, months: 1 } )
-	 
+
 	new Date().add( { years: -1 } )
-	</code></pre> 
+	</code></pre>
 	 * @param {Object}   Configuration object containing attributes (months, days, etc.)
 	 * @return {Date}    this
 	 */
@@ -59689,7 +59689,7 @@ require("./src/core/time_span.js");
 			this._orient = config;
 			return this;
 		}
-		
+
 		var x = config;
 
 		if (x.day) {
@@ -59725,15 +59725,15 @@ require("./src/core/time_span.js");
 		}
 		return this;
 	};
-	
+
 	/**
 	 * Get the week number. Week one (1) is the week which contains the first Thursday of the year. Monday is considered the first day of the week.
-	 * The .getWeek() function does NOT convert the date to UTC. The local datetime is used. 
+	 * The .getWeek() function does NOT convert the date to UTC. The local datetime is used.
 	 * Please use .getISOWeek() to get the week of the UTC converted date.
 	 * @return {Number}  1 to 53
 	 */
 	$P.getWeek = function (utc) {
-		// Create a copy of this date object  
+		// Create a copy of this date object
 		var self, target = new Date(this.valueOf());
 		if (utc) {
 			target.addMinutes(target.getTimezoneOffset());
@@ -59741,27 +59741,27 @@ require("./src/core/time_span.js");
 		} else {
 			self = this;
 		}
-		// ISO week date weeks start on monday  
-		// so correct the day number  
+		// ISO week date weeks start on monday
+		// so correct the day number
 		var dayNr = (self.getDay() + 6) % 7;
-		// ISO 8601 states that week 1 is the week  
-		// with the first thursday of that year.  
-		// Set the target date to the thursday in the target week  
+		// ISO 8601 states that week 1 is the week
+		// with the first thursday of that year.
+		// Set the target date to the thursday in the target week
 		target.setDate(target.getDate() - dayNr + 3);
-		// Store the millisecond value of the target date  
+		// Store the millisecond value of the target date
 		var firstThursday = target.valueOf();
-		// Set the target to the first thursday of the year  
-		// First set the target to january first  
+		// Set the target to the first thursday of the year
+		// First set the target to january first
 		target.setMonth(0, 1);
-		// Not a thursday? Correct the date to the next thursday  
+		// Not a thursday? Correct the date to the next thursday
 		if (target.getDay() !== 4) {
 			target.setMonth(0, 1 + ((4 - target.getDay()) + 7) % 7);
 		}
-		// The weeknumber is the number of weeks between the   
-		// first thursday of the year and the thursday in the target week  
-		return 1 + Math.ceil((firstThursday - target) / 604800000); // 604800000 = 7 * 24 * 3600 * 1000  
+		// The weeknumber is the number of weeks between the
+		// first thursday of the year and the thursday in the target week
+		return 1 + Math.ceil((firstThursday - target) / 604800000); // 604800000 = 7 * 24 * 3600 * 1000
 	};
-	
+
 	/**
 	 * Get the ISO 8601 week number. Week one ("01") is the week which contains the first Thursday of the year. Monday is considered the first day of the week.
 	 * The .getISOWeek() function does convert the date to it's UTC value. Please use .getWeek() to get the week of the local date.
@@ -59861,7 +59861,7 @@ require("./src/core/time_span.js");
 	$P.moveToMonth = moveToN("getMonth", "addMonths", 12);
 	/**
 	 * Get the Ordinate of the current day ("th", "st", "rd").
-	 * @return {String} 
+	 * @return {String}
 	 */
 	$P.getOrdinate = function () {
 		var num = this.getDate();
@@ -59899,7 +59899,7 @@ require("./src/core/time_span.js");
 	$P.hasDaylightSavingTime = function () {
 		return (Date.today().set({month: 0, day: 1}).getTimezoneOffset() !== Date.today().set({month: 6, day: 1}).getTimezoneOffset());
 	};
-	
+
 	/**
 	 * Indicates whether this Date instance is within the Daylight Saving Time range for the current time zone.
 	 * @return {Boolean} true|false
@@ -59940,7 +59940,7 @@ require("./src/core/time_span.js");
 
 	new Date().set( { millisecond: 0 } )
 	</code></pre>
-	 * 
+	 *
 	 * @param {Object}   Configuration object containing attributes (month, day, etc.)
 	 * @return {Date}    this
 	 */
@@ -59972,7 +59972,7 @@ require("./src/core/time_span.js");
 		if (config.day) {
 			this.addDays(config.day - this.getDate());
 		}
-		
+
 		return this;
 	};
 
@@ -60001,21 +60001,21 @@ require("./src/core/time_span.js");
 	 * ------  ---------------------------------------------------------------------------  -----------------------
 	 * s      The seconds of the minute between 0-59.                                      "0" to "59"
 	 * ss     The seconds of the minute with leading zero if required.                     "00" to "59"
-	 * 
+	 *
 	 * m      The minute of the hour between 0-59.                                         "0"  or "59"
 	 * mm     The minute of the hour with leading zero if required.                        "00" or "59"
-	 * 
+	 *
 	 * h      The hour of the day between 1-12.                                            "1"  to "12"
 	 * hh     The hour of the day with leading zero if required.                           "01" to "12"
-	 * 
+	 *
 	 * H      The hour of the day between 0-23.                                            "0"  to "23"
 	 * HH     The hour of the day with leading zero if required.                           "00" to "23"
-	 * 
+	 *
 	 * d      The day of the month between 1 and 31.                                       "1"  to "31"
 	 * dd     The day of the month with leading zero if required.                          "01" to "31"
-	 * ddd    Abbreviated day name. Date.CultureInfo.abbreviatedDayNames.                                "Mon" to "Sun" 
+	 * ddd    Abbreviated day name. Date.CultureInfo.abbreviatedDayNames.                                "Mon" to "Sun"
 	 * dddd   The full day name. Date.CultureInfo.dayNames.                                              "Monday" to "Sunday"
-	 * 
+	 *
 	 * M      The month of the year between 1-12.                                          "1" to "12"
 	 * MM     The month of the year with leading zero if required.                         "01" to "12"
 	 * MMM    Abbreviated month name. Date.CultureInfo.abbreviatedMonthNames.                            "Jan" to "Dec"
@@ -60023,12 +60023,12 @@ require("./src/core/time_span.js");
 	 *
 	 * yy     The year as a two-digit number.                                              "99" or "08"
 	 * yyyy   The full four digit year.                                                    "1999" or "2008"
-	 * 
+	 *
 	 * t      Displays the first character of the A.M./P.M. designator.                    "A" or "P"
 	 *		Date.CultureInfo.amDesignator or Date.CultureInfo.pmDesignator
 	 * tt     Displays the A.M./P.M. designator.                                           "AM" or "PM"
 	 *		Date.CultureInfo.amDesignator or Date.CultureInfo.pmDesignator
-	 * 
+	 *
 	 * S      The ordinal suffix ("st, "nd", "rd" or "th") of the current day.            "st, "nd", "rd" or "th"
 	 *
 	 * STANDARD DATE AND TIME FORMAT STRINGS
@@ -60048,7 +60048,7 @@ require("./src/core/time_span.js");
 	 * @param {String}   A format string consisting of one or more format spcifiers [Optional].
 	 * @return {String}  A string representation of the current Date object.
 	 */
-	
+
 	var ord = function (n) {
 		switch (n * 1) {
 		case 1:
@@ -60174,9 +60174,9 @@ require("./src/core/time_span.js");
 		};
 	};
 	$P.toString = function (format, ignoreStandards) {
-		
+
 		// Standard Date and Time Format Strings. Formats pulled from CultureInfo file and
-		// may vary by culture. 
+		// may vary by culture.
 		if (!ignoreStandards && format && format.length === 1) {
 			output = parseStandardFormats.call(this, format);
 			if (output) {
@@ -60198,7 +60198,7 @@ require("./src/core/time_span.js");
 			}
 			return ("000" + s).slice(l * -1);
 		};
-	
+
 	if (typeof window !== "undefined" && typeof window.console !== "undefined" && typeof window.console.log !== "undefined") {
 		$D.console = console; // used only to raise non-critical errors if available
 	} else {
@@ -60211,12 +60211,12 @@ require("./src/core/time_span.js");
 	$D.Config = $D.Config || {};
 
 	$D.initOverloads = function() {
-		/** 
-		 * Overload of Date.now. Allows an alternate call for Date.now where it returns the 
+		/**
+		 * Overload of Date.now. Allows an alternate call for Date.now where it returns the
 		 * current Date as an object rather than just milliseconds since the Unix Epoch.
 		 *
 		 * Also provides an implementation of now() for browsers (IE<9) that don't have it.
-		 * 
+		 *
 		 * Backwards compatible so with work with either:
 		 *  Date.now() [returns ms]
 		 * or
@@ -60250,7 +60250,7 @@ require("./src/core/time_span.js");
 				"Z";
 			};
 		}
-		
+
 		// private
 		if ( $P._toString === undefined ){
 			$P._toString = $P.toString;
@@ -60260,7 +60260,7 @@ require("./src/core/time_span.js");
 	$D.initOverloads();
 
 
-	/** 
+	/**
 	 * Gets a date that is set to the current date. The time is set to the start of the day (00:00 or 12:00 AM).
 	 * @return {Date}    The current date.
 	 */
@@ -60268,7 +60268,7 @@ require("./src/core/time_span.js");
 		return new Date().clearTime();
 	};
 
-	/** 
+	/**
 	 * Gets a date that is set to the current date and time (same as new Date, but chainable)
 	 * @return {Date}    The current date.
 	 */
@@ -60277,7 +60277,7 @@ require("./src/core/time_span.js");
 	};
 
 	/**
-	 * Compares the first date to the second date and returns an number indication of their relative values.  
+	 * Compares the first date to the second date and returns an number indication of their relative values.
 	 * @param {Date}     First Date object to compare [Required].
 	 * @param {Date}     Second Date object to compare to [Required].
 	 * @return {Number}  -1 = date1 is lessthan date2. 0 = values are equal. 1 = date1 is greaterthan date2.
@@ -60291,9 +60291,9 @@ require("./src/core/time_span.js");
 			throw new TypeError(date1 + " - " + date2);
 		}
 	};
-	
+
 	/**
-	 * Compares the first Date object to the second Date object and returns true if they are equal.  
+	 * Compares the first Date object to the second Date object and returns true if they are equal.
 	 * @param {Date}     First Date object to compare [Required]
 	 * @param {Date}     Second Date object to compare to [Required]
 	 * @return {Boolean} true if dates are equal. false if they are not equal.
@@ -60325,7 +60325,7 @@ require("./src/core/time_span.js");
 		}
 		return -1;
 	};
-	
+
 	/**
 	 * Gets the month number (0-11) if given a Culture Info specific string which is a valid monthName or abbreviatedMonthName.
 	 * @param {String}   The name of the month (eg. "February, "Feb", "october", "oct").
@@ -60376,7 +60376,7 @@ require("./src/core/time_span.js");
 	$P.getDaysInMonth = function () {
 		return $D.getDaysInMonth(this.getFullYear(), this.getMonth());
 	};
- 
+
 	$D.getTimezoneAbbreviation = function (offset, dst) {
 		var p, n = (dst || false) ? Date.CultureInfo.abbreviatedTimeZoneDST : Date.CultureInfo.abbreviatedTimeZoneStandard;
 		for (p in n) {
@@ -60388,7 +60388,7 @@ require("./src/core/time_span.js");
 		}
 		return null;
 	};
-	
+
 	$D.getTimezoneOffset = function (name, dst) {
 		var i, a =[], z = Date.CultureInfo.timezones;
 		if (!name) { name = (new Date()).getTimezone();}
@@ -60432,8 +60432,8 @@ require("./src/core/time_span.js");
 		} else if (typeof n !== "number") {
 			throw new TypeError(n + " is not a Number.");
 		} else if (n < min || n > max) {
-			// As failing validation is *not* an exceptional circumstance 
-			// lets not throw a RangeError Exception here. 
+			// As failing validation is *not* an exceptional circumstance
+			// lets not throw a RangeError Exception here.
 			// It's semantically correct but it's not sensible.
 			return false;
 		}
@@ -60511,10 +60511,10 @@ require("./src/core/time_span.js");
 	 */
 	$D.validateYear = function (value) {
 		/**
-		 * Per ECMAScript spec the range of times supported by Date objects is 
-		 * exactly -100,000,000 days to +100,000,000 days measured relative to 
-		 * midnight at the beginning of 01 January, 1970 UTC. 
-		 * This gives a range of 8,640,000,000,000,000 milliseconds to either 
+		 * Per ECMAScript spec the range of times supported by Date objects is
+		 * exactly -100,000,000 days to +100,000,000 days measured relative to
+		 * midnight at the beginning of 01 January, 1970 UTC.
+		 * This gives a range of 8,640,000,000,000,000 milliseconds to either
 		 * side of 01 January, 1970 UTC.
 		 *
 		 * Earliest possible date: Tue, 20 Apr 271,822 B.C. 00:00:00 UTC
@@ -61340,7 +61340,7 @@ require("./src/core/time_span.js");
 			return getText.getFromKey(key, countryCode);
 		}
 	};
-	
+
 	var loadI18nScript = function (code) {
 		// paatterned after jQuery's getScript.
 		var url = Date.Config.i18n + code + ".js";
@@ -61363,7 +61363,7 @@ require("./src/core/time_span.js");
 		setTimeout(function() {
 			head.insertBefore(script, head.firstChild);
 		}, 0); // allows return to execute first
-		
+
 		return {
 			done: function (cb) {
 				events.done = function() {
@@ -61609,7 +61609,7 @@ require("./src/core/time_span.js");
 							throw new Error("The DateJS IETF language tag '" + code + "' could not be loaded by Node. It likely does not exist.");
 						}
 					} else if (Date.Config && Date.Config.i18n) {
-						// we know the location of the files, so lets load them					
+						// we know the location of the files, so lets load them
 						async = true;
 						loadI18nScript(code).done(function(){
 							lang = code;
@@ -61653,7 +61653,7 @@ require("./src/core/time_span.js");
 
 	/**
 	 * @desc Converts the specified string value into its JavaScript Date equivalent using CultureInfo specific format information.
-	 * 
+	 *
 	 * Example
 	<pre><code>
 	///////////
@@ -61731,7 +61731,7 @@ require("./src/core/time_span.js");
 	var d1 = Date.parse("today - 1 year");
 
 	// Today - 1 year
-	var d1 = Date.parse("t-1y"); 
+	var d1 = Date.parse("t-1y");
 
 
 	/////////////////////////////
@@ -61764,7 +61764,7 @@ require("./src/core/time_span.js");
 			} catch (e) {
 				return null;
 			}
-			
+
 			return ((r[1].length === 0) ? r[0] : null);
 		},
 		nativeFallback: function(s) {
@@ -61826,11 +61826,11 @@ require("./src/core/time_span.js");
 			return null;
 		};
 	};
-	
+
 	/**
 	 * Converts the specified string value into its JavaScript Date equivalent using the specified format {String} or formats {Array} and the CultureInfo specific format information.
 	 * The format of the string value must match one of the supplied formats exactly.
-	 * 
+	 *
 	 * Example
 	<pre><code>
 	// 15-Oct-2004
@@ -61864,12 +61864,12 @@ require("./src/core/time_span.js");
 	_fn = function () {
 		return _.each(_.any.apply(null, arguments), _.not(g.ctoken2("timeContext")));
 	};
-	
+
 	g.datePartDelimiter = _.rtoken(/^([\s\-\.\,\/\x27]+)/);
 	g.timePartDelimiter = _.stoken(":");
 	g.whiteSpace = _.rtoken(/^\s*/);
 	g.generalDelimiter = _.rtoken(/^(([\s\,]|at|@|on)+)/);
-  
+
 	var _C = {};
 	g.ctoken = function (keys) {
 		var fn = _C[keys];
@@ -61914,7 +61914,7 @@ require("./src/core/time_span.js");
 		}
 		return rx;
 	};
-  
+
 	g.formats = function (fx) {
 		if (fx instanceof Array) {
 			var rx = [];
@@ -62043,7 +62043,7 @@ require("./src/core/time_span.js");
 			g.mdy = _setfn(g.ddd, g.month, g.day, g.year);
 			g.ymd = _setfn(g.ddd, g.year, g.month, g.day);
 			g.dmy = _setfn(g.ddd, g.day, g.month, g.year);
-						
+
 			g.date = function (s) {
 				return ((g[Date.CultureInfo.dateElementOrder] || g.mdy).call(this, s));
 			};
@@ -62084,7 +62084,7 @@ require("./src/core/time_span.js");
 		grammarFormats.dateFormats();
 		grammarFormats.relative();
 
-		
+
 		g.value = _.process(_.rtoken(/^([-+]?\d+)?(st|nd|rd|th)?/),
 			function (s) {
 				return function () {
@@ -62108,7 +62108,7 @@ require("./src/core/time_span.js");
 						}
 					),
 					// translate separator tokens into token rules
-					_.process(_.rtoken(/^[^dMyhHmstz]+/), // all legal separators 
+					_.process(_.rtoken(/^[^dMyhHmstz]+/), // all legal separators
 						function (s) {
 							return _.ignore(_.stoken(s));
 						}
@@ -62127,7 +62127,7 @@ require("./src/core/time_span.js");
 	};
 
 	g.buildGrammarFormats();
-	// parsing date format specifiers - ex: "h:m:s tt" 
+	// parsing date format specifiers - ex: "h:m:s tt"
 	// this little guy will generate a custom parser based
 	// on the format string, ex: g.format("h:m:s tt")
 	// check for these formats first
@@ -62153,8 +62153,8 @@ require("./src/core/time_span.js");
 		"dMyy",
 		"d"
 	]);
-	
-	// real starting rule: tries selected formats first, 
+
+	// real starting rule: tries selected formats first,
 	// then general purpose rule
 	g.start = function (s) {
 		try {
@@ -62344,7 +62344,7 @@ require("./src/core/time_span.js");
 		sequence: function (px, d, c) {
 			d = d || _.rtoken(/^\s*/);
 			c = c || null;
-			
+
 			if (px.length === 1) {
 				return px[0];
 			}
@@ -62428,7 +62428,7 @@ require("./src/core/time_span.js");
 					// since we are matching against a set of elements, the first
 					// thing to do is to add r[0] to matched elements
 					rx = [[r[0]], r[1]];
-					// if we matched and there is still input to parse and 
+					// if we matched and there is still input to parse and
 					// we don't already know this is the last element,
 					// we're going to next check for the delimiter ...
 					// if there's none, or if there's no input left to parse
@@ -62554,12 +62554,12 @@ require("./src/core/time_span.js");
 			};
 		}
 	};
-	
+
 
 	// Generator Operators And Vector Operators
 
 	// Generators are operators that have a signature of F(R) => R,
-	// taking a given rule and returning another rule, such as 
+	// taking a given rule and returning another rule, such as
 	// ignore, which parses a given rule and throws away the result.
 
 	// Vector operators are those that have a signature of F(R1,R2,...) => R,
@@ -62577,7 +62577,7 @@ require("./src/core/time_span.js");
 	// This also turns generators into vector operators, which allows
 	// constructs like:
 	// not(cache(foo, bar))
-	
+
 	var _generator = function (op) {
 		function gen() {
 			var args = null, rx = [], px, i;
@@ -62601,9 +62601,9 @@ require("./src/core/time_span.js");
 
 		return gen;
 	};
-	
+
 	var gx = "optional not ignore cache".split(/\s/);
-	
+
 	for (var i = 0 ; i < gx.length ; i++) {
 		_[gx[i]] = _generator(_[gx[i]]);
 	}
@@ -62617,13 +62617,13 @@ require("./src/core/time_span.js");
 			}
 		};
 	};
-	
+
 	var vx = "each any all".split(/\s/);
-	
+
 	for (var j = 0 ; j < vx.length ; j++) {
 		_[vx[j]] = _vector(_[vx[j]]);
 	}
-	
+
 }());
 },{}],262:[function(require,module,exports){
 (function () {
@@ -62666,19 +62666,19 @@ require("./src/core/time_span.js");
 		if (!this.year) {
 			this.year = now.getFullYear();
 		}
-		
+
 		if (!this.month && this.month !== 0) {
 			this.month = now.getMonth();
 		}
-		
+
 		if (!this.day) {
 			this.day = 1;
 		}
-		
+
 		if (!this.hour) {
 			this.hour = 0;
 		}
-		
+
 		if (!this.minute) {
 			this.minute = 0;
 		}
@@ -62836,7 +62836,7 @@ require("./src/core/time_span.js");
 					x[i].call(this);
 				}
 			}
-			
+
 			setDefaults.call(this);
 			parseMeridian.call(this);
 
@@ -62853,7 +62853,7 @@ require("./src/core/time_span.js");
 			} else if (this.timezoneOffset) {
 				d.set({ timezoneOffset: this.timezoneOffset });
 			}
-			
+
 			return d;
 		},
 		finish: function (x) {
@@ -62875,7 +62875,7 @@ require("./src/core/time_span.js");
 			} else {
 				today = finishUtils.getToday.call(this);
 			}
-			
+
 			expression = !!(this.days && this.days !== null || this.orient || this.operator);
 			orient = ((this.orient === "past" || this.operator === "subtract") ? -1 : 1);
 
@@ -62942,7 +62942,7 @@ require("./src/core/time_span.js");
 
 			finishUtils.setUnitValue.call(this, orient);
 			parseMeridian.call(this);
-			
+
 			if ((this.month || this.month === 0) && !this.day) {
 				this.day = 1;
 			}
@@ -62964,7 +62964,7 @@ require("./src/core/time_span.js");
 			} else {
 				today.set(this);
 			}
-			
+
 			if (this.timezone) {
 				this.timezone = this.timezone.toUpperCase();
 				var offset = $D.getTimezoneOffset(this.timezone);
@@ -62992,7 +62992,7 @@ require("./src/core/time_span.js");
 /*************************************************************
  * SugarPak - Domain Specific Language -  Syntactical Sugar  *
  *************************************************************/
- 
+
 (function () {
 	var $D = Date, $P = $D.prototype, $N = Number.prototype;
 
@@ -63007,14 +63007,14 @@ require("./src/core/time_span.js");
 
 	// private
 	$P._same = false;
-	
+
 	// private
 	$P._isSecond = false;
 
 	// private
 	$N._dateElement = "days";
 
-	/** 
+	/**
 	 * Moves the date to the next instance of a date as specified by the subsequent date element function (eg. .day(), .month()), month name function (eg. .january(), .jan()) or day name function (eg. .friday(), fri()).
 	 * Example
 	<pre><code>
@@ -63024,7 +63024,7 @@ require("./src/core/time_span.js");
 	Date.today().next().mar();
 	Date.today().next().week();
 	</code></pre>
-	 * 
+	 *
 	 * @return {Date}    date
 	 */
 	$P.next = function () {
@@ -63033,7 +63033,7 @@ require("./src/core/time_span.js");
 		return this;
 	};
 
-	/** 
+	/**
 	 * Creates a new Date (Date.today()) and moves the date to the next instance of the date as specified by the subsequent date element function (eg. .day(), .month()), month name function (eg. .january(), .jan()) or day name function (eg. .friday(), fri()).
 	 * Example
 	<pre><code>
@@ -63043,14 +63043,14 @@ require("./src/core/time_span.js");
 	Date.next().mar();
 	Date.next().week();
 	</code></pre>
-	 * 
+	 *
 	 * @return {Date}    date
 	 */
 	$D.next = function () {
 		return $D.today().next();
 	};
 
-	/** 
+	/**
 	 * Moves the date to the previous instance of a date as specified by the subsequent date element function (eg. .day(), .month()), month name function (eg. .january(), .jan()) or day name function (eg. .friday(), fri()).
 	 * Example
 	<pre><code>
@@ -63060,7 +63060,7 @@ require("./src/core/time_span.js");
 	Date.today().last().mar();
 	Date.today().last().week();
 	</code></pre>
-	 *  
+	 *
 	 * @return {Date}    date
 	 */
 	$P.last = $P.prev = $P.previous = function () {
@@ -63069,7 +63069,7 @@ require("./src/core/time_span.js");
 		return this;
 	};
 
-	/** 
+	/**
 	 * Creates a new Date (Date.today()) and moves the date to the previous instance of the date as specified by the subsequent date element function (eg. .day(), .month()), month name function (eg. .january(), .jan()) or day name function (eg. .friday(), fri()).
 	 * Example
 	<pre><code>
@@ -63079,14 +63079,14 @@ require("./src/core/time_span.js");
 	Date.prev().mar();
 	Date.last().week();
 	</code></pre>
-	 *  
+	 *
 	 * @return {Date}    date
 	 */
 	$D.last = $D.prev = $D.previous = function () {
 		return $D.today().last();
 	};
 
-	/** 
+	/**
 	 * Performs a equality check when followed by either a month name, day name or .weekday() function.
 	 * Example
 	<pre><code>
@@ -63095,7 +63095,7 @@ require("./src/core/time_span.js");
 	Date.today().is().march();
 	Date.today().is().mar();
 	</code></pre>
-	 *  
+	 *
 	 * @return {Boolean}    true|false
 	 */
 	$P.is = function () {
@@ -63103,11 +63103,11 @@ require("./src/core/time_span.js");
 		return this;
 	};
 
-	/** 
+	/**
 	 * Determines if two date objects occur on/in exactly the same instance of the subsequent date part function.
 	 * The function .same() must be followed by a date part function (example: .day(), .month(), .year(), etc).
 	 *
-	 * An optional Date can be passed in the date part function. If now date is passed as a parameter, 'Now' is used. 
+	 * An optional Date can be passed in the date part function. If now date is passed as a parameter, 'Now' is used.
 	 *
 	 * The following example demonstrates how to determine if two dates fall on the exact same day.
 	 *
@@ -63118,24 +63118,24 @@ require("./src/core/time_span.js");
 
 	// Do they occur on the same day?
 	d1.same().day(d2); // true
-	
+
 	// Do they occur on the same hour?
 	d1.same().hour(d2); // false, unless d2 hour is '00' (midnight).
-	
+
 	// What if it's the same day, but one year apart?
 	var nextYear = Date.today().add(1).year();
 
-	d1.same().day(nextYear); // false, because the dates must occur on the exact same day. 
+	d1.same().day(nextYear); // false, because the dates must occur on the exact same day.
 	</code></pre>
 	 *
-	 * Scenario: Determine if a given date occurs during some week period 2 months from now. 
+	 * Scenario: Determine if a given date occurs during some week period 2 months from now.
 	 *
 	 * Example
 	<pre><code>
 	var future = Date.today().add(2).months();
 	return someDate.same().week(future); // true|false;
 	</code></pre>
-	 *  
+	 *
 	 * @return {Boolean}    true|false
 	 */
 	$P.same = function () {
@@ -63144,7 +63144,7 @@ require("./src/core/time_span.js");
 		return this;
 	};
 
-	/** 
+	/**
 	 * Determines if the current date/time occurs during Today. Must be preceded by the .is() function.
 	 * Example
 	<pre><code>
@@ -63153,20 +63153,20 @@ require("./src/core/time_span.js");
 	Date.today().is().today();// true
 	Date.today().add(-1).day().is().today(); // false
 	</code></pre>
-	 *  
+	 *
 	 * @return {Boolean}    true|false
 	 */
 	$P.today = function () {
 		return this.same().day();
 	};
 
-	/** 
+	/**
 	 * Determines if the current date is a weekday. This function must be preceded by the .is() function.
 	 * Example
 	<pre><code>
 	Date.today().is().weekday(); // true|false
 	</code></pre>
-	 *  
+	 *
 	 * @return {Boolean}    true|false
 	 */
 	$P.weekday = function () {
@@ -63182,13 +63182,13 @@ require("./src/core/time_span.js");
 		}
 		return false;
 	};
-	/** 
+	/**
 	 * Determines if the current date is on the weekend. This function must be preceded by the .is() function.
 	 * Example
 	<pre><code>
 	Date.today().is().weekend(); // true|false
 	</code></pre>
-	 *  
+	 *
 	 * @return {Boolean}    true|false
 	 */
 	$P.weekend = function () {
@@ -63199,7 +63199,7 @@ require("./src/core/time_span.js");
 		return false;
 	};
 
-	/** 
+	/**
 	 * Sets the Time of the current Date instance. A string "6:15 pm" or config object {hour:18, minute:15} are accepted.
 	 * Example
 	<pre><code>
@@ -63209,14 +63209,14 @@ require("./src/core/time_span.js");
 	// Set time to 6:15pm with a config object
 	Date.today().at({hour:18, minute:15});
 	</code></pre>
-	 *  
+	 *
 	 * @return {Date}    date
 	 */
 	$P.at = function (time) {
 		return (typeof time === "string") ? $D.parse(this.toString("d") + " " + time) : this.set(time);
 	};
-		
-	/** 
+
+	/**
 	 * Creates a new Date() and adds this (Number) to the date based on the preceding date element function (eg. second|minute|hour|day|month|year).
 	 * Example
 	<pre><code>
@@ -63224,11 +63224,11 @@ require("./src/core/time_span.js");
 	(3).days().fromNow();
 	(6).months().fromNow();
 
-	// Declared Number variables do not require parentheses. 
+	// Declared Number variables do not require parentheses.
 	var n = 6;
 	n.months().fromNow();
 	</code></pre>
-	 *  
+	 *
 	 * @return {Date}    A new Date instance
 	 */
 	$N.fromNow = $N.after = function (date) {
@@ -63237,7 +63237,7 @@ require("./src/core/time_span.js");
 		return ((!date) ? new Date() : date.clone()).add(c);
 	};
 
-	/** 
+	/**
 	 * Creates a new Date() and subtract this (Number) from the date based on the preceding date element function (eg. second|minute|hour|day|month|year).
 	 * Example
 	<pre><code>
@@ -63245,11 +63245,11 @@ require("./src/core/time_span.js");
 	(3).days().ago();
 	(6).months().ago();
 
-	// Declared Number variables do not require parentheses. 
+	// Declared Number variables do not require parentheses.
 	var n = 6;
 	n.months().ago();
 	</code></pre>
-	 *  
+	 *
 	 * @return {Date}    A new Date instance
 	 */
 	$N.ago = $N.before = function (date) {
@@ -63268,20 +63268,20 @@ require("./src/core/time_span.js");
 		nth = ("final first second third fourth fifth").split(/\s/),
 		de;
 
-   /** 
+   /**
 	 * Returns an object literal of all the date parts.
 	 * Example
 	<pre><code>
 	var o = new Date().toObject();
-	
+
 	// { year: 2008, month: 4, week: 20, day: 13, hour: 18, minute: 9, second: 32, millisecond: 812 }
-	
+
 	// The object properties can be referenced directly from the object.
-	
+
 	alert(o.day);  // alerts "13"
 	alert(o.year); // alerts "2008"
 	</code></pre>
-	 *  
+	 *
 	 * @return {Date}    An object literal representing the original date object.
 	 */
 	$P.toObject = function () {
@@ -63293,28 +63293,28 @@ require("./src/core/time_span.js");
 		}
 		return o;
 	};
-   
-   /** 
-	 * Returns a date created from an object literal. Ignores the .week property if set in the config. 
+
+   /**
+	 * Returns a date created from an object literal. Ignores the .week property if set in the config.
 	 * Example
 	<pre><code>
 	var o = new Date().toObject();
-	
-	return Date.fromObject(o); // will return the same date. 
+
+	return Date.fromObject(o); // will return the same date.
 
 	var o2 = {month: 1, day: 20, hour: 18}; // birthday party!
 	Date.fromObject(o2);
 	</code></pre>
-	 *  
+	 *
 	 * @return {Date}    An object literal representing the original date object.
 	 */
 	$D.fromObject = function(config) {
 		config.week = null;
 		return Date.today().set(config);
 	};
-		
+
 	// Create day name functions and abbreviated day name functions (eg. monday(), friday(), fri()).
-	
+
 	var df = function (n) {
 		return function () {
 			if (this._is) {
@@ -63323,18 +63323,18 @@ require("./src/core/time_span.js");
 			}
 			if (this._move) { this._move = null; }
 			if (this._nth !== null) {
-				// If the .second() function was called earlier, remove the _orient 
+				// If the .second() function was called earlier, remove the _orient
 				// from the date, and then continue.
 				// This is required because 'second' can be used in two different context.
-				// 
+				//
 				// Example
 				//
 				//   Date.today().add(1).second();
 				//   Date.march().second().monday();
-				// 
+				//
 				// Things get crazy with the following...
 				//   Date.march().add(1).second().second().monday(); // but it works!!
-				//  
+				//
 				if (this._isSecond) {
 					this.addSeconds(this._orient * -1);
 				}
@@ -63353,7 +63353,7 @@ require("./src/core/time_span.js");
 			return this.moveToDayOfWeek(n, this._orient);
 		};
 	};
-	
+
 	var sdf = function (n) {
 		return function () {
 			var t = $D.today(), shift = n - t.getDay();
@@ -63363,9 +63363,9 @@ require("./src/core/time_span.js");
 			return t.addDays(shift);
 		};
 	};
-	
 
-	
+
+
 	// Create month name functions and abbreviated month name functions (eg. january(), march(), mar()).
 	var month_instance_functions = function (n) {
 		return function () {
@@ -63376,13 +63376,13 @@ require("./src/core/time_span.js");
 			return this.moveToMonth(n, this._orient);
 		};
 	};
-	
+
 	var month_static_functions = function (n) {
 		return function () {
 			return $D.today().set({ month: n, day: 1 });
 		};
 	};
-	
+
 	var processTerms = function (names, staticFunc, instanceFunc) {
 		for (var i = 0; i < names.length; i++) {
 			// Create constant static Name variables.
@@ -63397,11 +63397,11 @@ require("./src/core/time_span.js");
 
 	processTerms(dx, sdf, df);
 	processTerms(mx, month_static_functions, month_instance_functions);
-	
+
 	// Create date element functions and plural date element functions used with Date (eg. day(), days(), months()).
 	var ef = function (j) {
 		return function () {
-			// if the .second() function was called earlier, the _orient 
+			// if the .second() function was called earlier, the _orient
 			// has alread been added. Just return this and reset _isSecond.
 			if (this._isSecond) {
 				this._isSecond = false;
@@ -63417,7 +63417,7 @@ require("./src/core/time_span.js");
 
 				// the substr trick with -1 doesn't work in IE8 or less
 				k = (k[k.length-1] === "s") ? k.substring(0,k.length-1) : k;
-					
+
 				for (var m = (px.length - 1); m > -1; m--) {
 					v = px[m].toLowerCase();
 					if (o1[v] !== o2[v]) {
@@ -63429,7 +63429,7 @@ require("./src/core/time_span.js");
 				}
 				return true;
 			}
-			
+
 			if (j.substring(j.length - 1) !== "s") {
 				j += "s";
 			}
@@ -63437,28 +63437,28 @@ require("./src/core/time_span.js");
 			return this["add" + j](this._orient);
 		};
 	};
-	
-	
+
+
 	var nf = function (n) {
 		return function () {
 			this._dateElement = n;
 			return this;
 		};
 	};
-   
+
 	for (var k = 0; k < px.length; k++) {
 		de = px[k].toLowerCase();
 		if(de !== "weekday") {
 			// Create date element functions and plural date element functions used with Date (eg. day(), days(), months()).
 			$P[de] = $P[de + "s"] = ef(px[k]);
-			
+
 			// Create date element functions and plural date element functions used with Number (eg. day(), days(), months()).
 			$N[de] = $N[de + "s"] = nf(de + "s");
 		}
 	}
-	
+
 	$P._ss = ef("Second");
-	
+
 	var nthfn = function (n) {
 		return function (dayOfWeek) {
 			if (this._same) {
@@ -63492,7 +63492,7 @@ require("./src/core/time_span.js");
 			return this[attr];
 		};
 	};
-	
+
 	var sFn = function (attr) {
 		return function (val) {
 			this[attr] = val;
@@ -63581,7 +63581,7 @@ require("./src/core/time_span.js");
 	Date.TimePeriod = TimePeriod;
 
 	if (typeof window !== "undefined") {
-		// keeping API compatible for v1.x 
+		// keeping API compatible for v1.x
 		window.TimePeriod = TimePeriod;
 	}
 }());
@@ -63593,7 +63593,7 @@ require("./src/core/time_span.js");
 			return this[attr];
 		};
 	};
-	
+
 	var sFn = function (attr) {
 		return function (val) {
 			this[attr] = val;
@@ -63637,7 +63637,7 @@ require("./src/core/time_span.js");
 					(this.getMinutes() * 60000) +
 					(this.getSeconds() * 1000);
 		};
-		
+
 		this.compareTo = function (time) {
 			var t1 = new Date(1970, 1, 1, this.getHours(), this.getMinutes(), this.getSeconds()), t2;
 			if (time === null) {
@@ -63697,13 +63697,13 @@ require("./src/core/time_span.js");
 					return this.getHours() + ":" + this.p(this.getMinutes()) + ":" + this.p(this.getSeconds());
 				}
 			};
-			
+
 			this.p = function (s) {
 				return (s.toString().length < 2) ? "0" + s : s;
 			};
-			
+
 			var me = this;
-			
+
 			return format ? format.replace(/dd?|HH?|hh?|mm?|ss?|tt?/g,
 			function (format) {
 				switch (format) {
@@ -63748,7 +63748,7 @@ require("./src/core/time_span.js");
 
 
 	/**
-	 * Gets the time of day for this date instances. 
+	 * Gets the time of day for this date instances.
 	 * @return {TimeSpan} TimeSpan
 	 */
 	Date.prototype.getTimeOfDay = function () {
@@ -63758,7 +63758,7 @@ require("./src/core/time_span.js");
 	Date.TimeSpan = TimeSpan;
 
 	if (typeof window !== "undefined" ) {
-		// keeping API compatible for v1.x 
+		// keeping API compatible for v1.x
 		window.TimeSpan = TimeSpan;
 	}
 }());
@@ -63981,11 +63981,11 @@ exports.ECKey = function(curve, key, isPublic)
 //      var y = key.slice(bytes+1);
 //      this.P = new ECPointFp(curve,
 //        curve.fromBigInteger(new BigInteger(x.toString("hex"), 16)),
-//        curve.fromBigInteger(new BigInteger(y.toString("hex"), 16)));      
+//        curve.fromBigInteger(new BigInteger(y.toString("hex"), 16)));
       this.P = curve.decodePointHex(key.toString("hex"));
     }else{
       if(key.length != bytes) return false;
-      priv = new BigInteger(key.toString("hex"), 16);      
+      priv = new BigInteger(key.toString("hex"), 16);
     }
   }else{
     var n1 = n.subtract(BigInteger.ONE);
@@ -64007,7 +64007,7 @@ exports.ECKey = function(curve, key, isPublic)
       if(!key || !key.P) return false;
       var S = key.P.multiply(priv);
       return new Buffer(unstupid(S.getX().toBigInteger().toString(16),bytes*2),"hex");
-   }     
+   }
   }
 }
 
@@ -64450,7 +64450,7 @@ ECFieldElementFp.prototype.modReduce = function(x)
             {
                 u = u.multiply(this.getR());
             }
-            x = u.add(v); 
+            x = u.add(v);
         }
         while (x.compareTo(q) >= 0)
         {
@@ -67706,8 +67706,8 @@ var util = require('util')
   , net = require('net')
   , tls = require('tls')
   , AgentSSL = require('https').Agent
-  
-function getConnectionName(host, port) {  
+
+function getConnectionName(host, port) {
   var name = ''
   if (typeof host === 'string') {
     name = host + ':' + port
@@ -67716,7 +67716,7 @@ function getConnectionName(host, port) {
     name = host.host + ':' + host.port + ':' + (host.localAddress ? (host.localAddress + ':') : ':')
   }
   return name
-}    
+}
 
 function ForeverAgent(options) {
   var self = this
@@ -67734,7 +67734,7 @@ function ForeverAgent(options) {
     } else if (self.sockets[name].length < self.minSockets) {
       if (!self.freeSockets[name]) self.freeSockets[name] = []
       self.freeSockets[name].push(socket)
-      
+
       // if an error happens while we don't use the socket anyway, meh, throw the socket away
       var onIdleError = function() {
         socket.destroy()
@@ -67760,7 +67760,7 @@ ForeverAgent.prototype.createConnection = net.createConnection
 ForeverAgent.prototype.addRequestNoreuse = Agent.prototype.addRequest
 ForeverAgent.prototype.addRequest = function(req, host, port) {
   var name = getConnectionName(host, port)
-  
+
   if (typeof host !== 'string') {
     var options = host
     port = options.port
@@ -67789,7 +67789,7 @@ ForeverAgent.prototype.removeSocket = function(s, name, host, port) {
     delete this.sockets[name]
     delete this.requests[name]
   }
-  
+
   if (this.freeSockets[name]) {
     var index = this.freeSockets[name].indexOf(s)
     if (index !== -1) {
@@ -71950,9 +71950,9 @@ module.exports.isDuplex   = isDuplex
 /*
  * Copyright (c) 2014 Mega Limited
  * under the MIT License.
- * 
+ *
  * Authors: Guy K. Kloss
- * 
+ *
  * You should have received a copy of the license along with this program.
  */
 
@@ -71960,7 +71960,7 @@ var dh = require('./lib/dh');
 var eddsa = require('./lib/eddsa');
 var curve255 = require('./lib/curve255');
 var utils = require('./lib/utils');
-    
+
     /**
      * @exports jodid25519
      * Curve 25519-based cryptography collection.
@@ -71970,7 +71970,7 @@ var utils = require('./lib/utils');
      * (EdDSA) based on Ed25519.
      */
     var ns = {};
-    
+
     /** Module version indicator as string (format: [major.minor.patch]). */
     ns.VERSION = '0.7.1';
 
@@ -73800,7 +73800,7 @@ module.exports = ns;
     }
     return hex;
   };
-  
+
   if(!root.JS_SHA256_TEST && NODE_JS) {
     sha256.sha256 = sha256;
     sha256.sha224 = sha224;
@@ -73839,8 +73839,8 @@ module.exports = ns;
   var PADDING = [6, 1536, 393216, 100663296];
   var SHIFT = [0, 8, 16, 24];
   var RC = [1, 0, 32898, 0, 32906, 2147483648, 2147516416, 2147483648, 32907, 0, 2147483649,
-            0, 2147516545, 2147483648, 32777, 2147483648, 138, 0, 136, 0, 2147516425, 0, 
-            2147483658, 0, 2147516555, 0, 139, 2147483648, 32905, 2147483648, 32771, 
+            0, 2147516545, 2147483648, 32777, 2147483648, 138, 0, 136, 0, 2147516425, 0,
+            2147483658, 0, 2147516555, 0, 139, 2147483648, 32905, 2147483648, 32771,
             2147483648, 32770, 2147483648, 128, 2147483648, 32778, 0, 2147483658, 2147483648,
             2147516545, 2147483648, 32896, 2147483648, 2147483649, 0, 2147516424, 2147483648];
 
@@ -73886,9 +73886,9 @@ module.exports = ns;
     }
 
     var block, code, end = false, index = 0, start = 0, length = message.length,
-        n, i, h, l, c0, c1, c2, c3, c4, c5, c6, c7, c8, c9, 
-        b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16, b17, 
-        b18, b19, b20, b21, b22, b23, b24, b25, b26, b27, b28, b29, b30, b31, b32, b33, 
+        n, i, h, l, c0, c1, c2, c3, c4, c5, c6, c7, c8, c9,
+        b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16, b17,
+        b18, b19, b20, b21, b22, b23, b24, b25, b26, b27, b28, b29, b30, b31, b32, b33,
         b34, b35, b36, b37, b38, b39, b40, b41, b42, b43, b44, b45, b46, b47, b48, b49;
     var blockCount = (1600 - bits * 2) / 32;
     var byteCount = blockCount * 4;
@@ -74223,7 +74223,7 @@ module.exports = ns;
     }
     return hex;
   };
-  
+
   if(!root.JS_SHA3_TEST && NODE_JS) {
     module.exports = {
       sha3_512: sha3_512,
@@ -75817,8 +75817,8 @@ var validate = exports._validate = function(/*Any*/instance,/*Object*/schema,/*O
 			if(typeof instance != 'object' || instance instanceof Array){
 				errors.push({property:path,message:"an object is required"});
 			}
-			
-			for(var i in objTypeDef){ 
+
+			for(var i in objTypeDef){
 				if(objTypeDef.hasOwnProperty(i)){
 					var value = instance[i];
 					// skip _not_ specified properties
@@ -77214,7 +77214,7 @@ module.exports = {
                     );
 
                 } else {
-                    
+
                     try {
                         return crypto.pbkdf2Sync(
                             password,
@@ -77427,7 +77427,7 @@ module.exports = {
                     derivedKey.slice(0, 16),
                     iv
                 ), "hex");
-            
+
             } else {
                 throw new Error("message authentication code mismatch");
             }
@@ -77570,18 +77570,18 @@ module.exports = {
 },{"./lib/keccak":352,"./lib/scrypt":353,"_process":138,"buffer":54,"crypto":63,"elliptic":356,"ethereumjs-util":373,"fs":1,"node-uuid":380,"path":131,"validator":459}],352:[function(require,module,exports){
 /* keccak.js
  * A Javascript implementation of the Keccak SHA-3 candidate from Bertoni,
- * Daemen, Peeters and van Assche. This version is not optimized with any of 
- * the tricks specifically mentioned in the spec, and was intended as a first 
+ * Daemen, Peeters and van Assche. This version is not optimized with any of
+ * the tricks specifically mentioned in the spec, and was intended as a first
  * implementation to help in understanding the specification. It uses a long
  * integer class L to handle double arithmetic; the class is stateful so that
  * constructors don't slow down the algorithm.
- * 
- * This file implements Keccak[1088, 512, 32], their proposed candidate for 
- * SHA3-256. This implementation operates on Javascript strings, interpreted as 
- * UTF-16LE encoded (i.e. "\u1234\u5678" --> [0x34, 0x12, 0x78, 0x56], and thus 
- * is restricted to hash byte strings which are a multiple of 2 bytes in 
+ *
+ * This file implements Keccak[1088, 512, 32], their proposed candidate for
+ * SHA3-256. This implementation operates on Javascript strings, interpreted as
+ * UTF-16LE encoded (i.e. "\u1234\u5678" --> [0x34, 0x12, 0x78, 0x56], and thus
+ * is restricted to hash byte strings which are a multiple of 2 bytes in
  * length.
- * 
+ *
  * The following test vectors are given on the Keccak NIST CD:
  *     ShortMsgKAT_256.txt
  *         Len = 0
@@ -77595,7 +77595,7 @@ module.exports = {
  *         Len = 2000
  *         Msg = B3C5E74B69933C2533106C563B4CA20238F2B6E675E8681E34A389894785BDADE59652D4A73D80A5C85BD454FD1E9FFDAD1C3815F5038E9EF432AAC5C3C4FE840CC370CF86580A6011778BBEDAF511A51B56D1A2EB68394AA299E26DA9ADA6A2F39B9FAFF7FBA457689B9C1A577B2A1E505FDF75C7A0A64B1DF81B3A356001BF0DF4E02A1FC59F651C9D585EC6224BB279C6BEBA2966E8882D68376081B987468E7AED1EF90EBD090AE825795CDCA1B4F09A979C8DFC21A48D8A53CDBB26C4DB547FC06EFE2F9850EDD2685A4661CB4911F165D4B63EF25B87D0A96D3DFF6AB0758999AAD214D07BD4F133A6734FDE445FE474711B69A98F7E2B
  *         MD = C6D86CC4CCEF3BB70BF7BFDDEC6A9A04A0DD0A68FE1BF51C14648CF506A03E98
- * 
+ *
  * The corresponding Javascript code is:
  *     keccak("");
  *         "c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470"
@@ -77603,7 +77603,7 @@ module.exports = {
  *         "a8eaceda4d47b3281a795ad9e1ea2122b407baf9aabcb9e18b5717b7873537d2"
  *     keccak("\uC5B3\u4BE7\u9369\u253C\u1033\u566C\u4C3B\u02A2\uF238\uE6B6\uE875\u1E68\uA334\u8989\u8547\uADBD\u96E5\uD452\u3DA7\uA580\u5BC8\u54D4\u1EFD\uFD9F\u1CAD\u1538\u03F5\u9E8E\u32F4\uC5AA\uC4C3\u84FE\uC30C\uCF70\u5886\u600A\u7711\uBE8B\uF5DA\uA511\u561B\uA2D1\u68EB\u4A39\u99A2\u6DE2\uADA9\uA2A6\u9BF3\uAF9F\uFBF7\u57A4\u9B68\u1A9C\u7B57\u1E2A\u5F50\u75DF\uA0C7\u4BA6\uF81D\u3A1B\u6035\uBF01\uF40D\u2AE0\uC51F\u659F\u9D1C\u5E58\u22C6\uB24B\uC679\uBABE\u6629\u88E8\u682D\u6037\uB981\u4687\u7A8E\u1EED\u0EF9\u09BD\uE80A\u7925\uDC5C\uB4A1\u9AF0\u9C97\uFC8D\uA421\u8A8D\uCD53\u26BB\uDBC4\u7F54\u6EC0\u2FFE\u5098\uD2ED\u5A68\u6146\u49CB\uF111\uD465\u3EB6\u5BF2\uD087\u6DA9\uFF3D\uB06A\u8975\uAA99\u14D2\u7BD0\uF1D4\uA633\u4F73\u44DE\uE45F\u7174\u691B\u8FA9\u2B7E");
  *         "c6d86cc4ccef3bb70bf7bfddec6a9a04a0dd0a68fe1bf51c14648cf506a03e98"
- * 
+ *
  * This function was written by Chris Drost of drostie.org, and he hereby
  * dedicates it into the public domain: it has no copyright. It is provided with
  * NO WARRANTIES OF ANY KIND. I do humbly request that you provide me some sort
@@ -77682,7 +77682,7 @@ module.exports = (function () {
         };
         return fn;
     };
-        
+
     permute = [0, 10, 20, 5, 15, 16, 1, 11, 21, 6, 7, 17, 2, 12, 22, 23, 8, 18, 3, 13, 14, 24, 9, 19, 4];
     RC = "0,1;0,8082;z,808A;z,yy;0,808B;0,y0001;z,y8081;z,8009;0,8A;0,88;0,y8009;0,y000A;0,y808B;z,8B;z,8089;z,8003;z,8002;z,80;0,800A;z,y000A;z,y8081;z,8080;0,y0001;z,y8008"
         .replace(/z/g, "80000000").replace(/y/g, "8000").split(";").map(function (str) {
@@ -77724,7 +77724,7 @@ module.exports = (function () {
             for (i = 0; i < 25; i += 1) {
                 state.array[permute[i]] = last[i];
             }
-            
+
             // CHI STEP
             b = state.clone();
             for (x = 0; x < 5; x += 1) {
@@ -91945,7 +91945,7 @@ hash.prototype.update = function (i) {
 }
 
 hash.prototype.digest = function (encoding) {
-  var result = Sha3[this.bitcount](this.content) 
+  var result = Sha3[this.bitcount](this.content)
   if(encoding === 'hex')
     return result
   else
@@ -102968,7 +102968,7 @@ function compare (a, b) {
 }
 
 function generateBase (httpMethod, base_uri, params) {
-  // adapted from https://dev.twitter.com/docs/auth/oauth and 
+  // adapted from https://dev.twitter.com/docs/auth/oauth and
   // https://dev.twitter.com/docs/auth/creating-signature
 
   // Parameter normalization
@@ -108507,10 +108507,10 @@ Request.prototype.aws = function (opts, now) {
     self._aws = opts
     return self
   }
-  
+
   if (opts.sign_version == 4 || opts.sign_version == '4') {
     var aws4 = require('aws4')
-    // use aws4  
+    // use aws4
     var options = {
       host: self.uri.host,
       path: self.uri.path,
@@ -118555,7 +118555,7 @@ TunnelingAgent.prototype.createSocket = function createSocket(options, cb) {
   var placeholder = {}
   self.sockets.push(placeholder)
 
-  var connectOptions = mergeOptions({}, self.proxyOptions, 
+  var connectOptions = mergeOptions({}, self.proxyOptions,
     { method: 'CONNECT'
     , path: options.host + ':' + options.port
     , agent: false
@@ -118620,7 +118620,7 @@ TunnelingAgent.prototype.createSocket = function createSocket(options, cb) {
 TunnelingAgent.prototype.removeSocket = function removeSocket(socket) {
   var pos = this.sockets.indexOf(socket)
   if (pos === -1) return
-  
+
   this.sockets.splice(pos, 1)
 
   var pending = this.requests.shift()
@@ -118635,7 +118635,7 @@ function createSecureSocket(options, cb) {
   var self = this
   TunnelingAgent.prototype.createSocket.call(self, options, function(socket) {
     // 0 is dummy port for v0.6
-    var secureSocket = tls.connect(0, mergeOptions({}, self.options, 
+    var secureSocket = tls.connect(0, mergeOptions({}, self.options,
       { servername: options.host
       , socket: socket
       }
@@ -123110,7 +123110,7 @@ module.exports = SolidityTypeBytes;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file coder.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -123140,7 +123140,7 @@ var SolidityCoder = function (types) {
  *
  * @method _requireType
  * @param {String} type
- * @returns {SolidityType} 
+ * @returns {SolidityType}
  * @throws {Error} throws if no matching type is found
  */
 SolidityCoder.prototype._requireType = function (type) {
@@ -123188,7 +123188,7 @@ SolidityCoder.prototype.encodeParams = function (types, params) {
         return acc + roundedStaticPartLength;
     }, 0);
 
-    var result = this.encodeMultiWithOffset(types, solidityTypes, encodeds, dynamicOffset); 
+    var result = this.encodeMultiWithOffset(types, solidityTypes, encodeds, dynamicOffset);
 
     return result;
 };
@@ -123213,7 +123213,7 @@ SolidityCoder.prototype.encodeMultiWithOffset = function (types, solidityTypes, 
 
         // TODO: figure out nested arrays
     });
-    
+
     types.forEach(function (type, i) {
         if (isDynamic(i)) {
             var e = self.encodeWithOffset(types[i], solidityTypes[i], encodeds[i], dynamicOffset);
@@ -123233,7 +123233,7 @@ SolidityCoder.prototype.encodeWithOffset = function (type, solidityType, encoded
             var nestedName = solidityType.nestedName(type);
             var nestedStaticPartLength = solidityType.staticPartLength(nestedName);
             var result = encoded[0];
-            
+
             (function () {
                 var previousLength = 2; // in int
                 if (solidityType.isDynamicArray(nestedName)) {
@@ -123243,7 +123243,7 @@ SolidityCoder.prototype.encodeWithOffset = function (type, solidityType, encoded
                     }
                 }
             })();
-            
+
             // first element is length, skip it
             (function () {
                 for (var i = 0; i < encoded.length - 1; i++) {
@@ -123254,7 +123254,7 @@ SolidityCoder.prototype.encodeWithOffset = function (type, solidityType, encoded
 
             return result;
         })();
-       
+
     } else if (solidityType.isStaticArray(type)) {
         return (function () {
             var nestedName = solidityType.nestedName(type);
@@ -123267,7 +123267,7 @@ SolidityCoder.prototype.encodeWithOffset = function (type, solidityType, encoded
                     var previousLength = 0; // in int
                     for (var i = 0; i < encoded.length; i++) {
                         // calculate length of previous item
-                        previousLength += +(encoded[i - 1] || [])[0] || 0; 
+                        previousLength += +(encoded[i - 1] || [])[0] || 0;
                         result += f.formatInputInt(offset + i * nestedStaticPartLength + previousLength * 32).encode();
                     }
                 })();
@@ -123310,7 +123310,7 @@ SolidityCoder.prototype.decodeParam = function (type, bytes) {
 SolidityCoder.prototype.decodeParams = function (types, bytes) {
     var solidityTypes = this.getSolidityTypes(types);
     var offsets = this.getOffsets(types, solidityTypes);
-        
+
     return solidityTypes.map(function (solidityType, index) {
         return solidityType.decode(bytes, offsets[index],  types[index], index);
     });
@@ -123320,16 +123320,16 @@ SolidityCoder.prototype.getOffsets = function (types, solidityTypes) {
     var lengths =  solidityTypes.map(function (solidityType, index) {
         return solidityType.staticPartLength(types[index]);
     });
-    
+
     for (var i = 1; i < lengths.length; i++) {
          // sum with length of previous element
-        lengths[i] += lengths[i - 1]; 
+        lengths[i] += lengths[i - 1];
     }
 
     return lengths.map(function (length, index) {
         // remove the current length, so the length is sum of previous elements
         var staticPartLength = solidityTypes[index].staticPartLength(types[index]);
-        return length - staticPartLength; 
+        return length - staticPartLength;
     });
 };
 
@@ -123399,7 +123399,7 @@ module.exports = SolidityTypeDynamicBytes;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file formatters.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -123543,7 +123543,7 @@ var formatOutputUInt = function (param) {
  * @returns {BigNumber} input bytes formatted to real
  */
 var formatOutputReal = function (param) {
-    return formatOutputInt(param).dividedBy(new BigNumber(2).pow(128)); 
+    return formatOutputInt(param).dividedBy(new BigNumber(2).pow(128));
 };
 
 /**
@@ -123554,7 +123554,7 @@ var formatOutputReal = function (param) {
  * @returns {BigNumber} input bytes formatted to ureal
  */
 var formatOutputUReal = function (param) {
-    return formatOutputUInt(param).dividedBy(new BigNumber(2).pow(128)); 
+    return formatOutputUInt(param).dividedBy(new BigNumber(2).pow(128));
 };
 
 /**
@@ -123689,7 +123689,7 @@ module.exports = SolidityTypeInt;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file param.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -123708,7 +123708,7 @@ var SolidityParam = function (value, offset) {
 
 /**
  * This method should be used to get length of params's dynamic part
- * 
+ *
  * @method dynamicPartLength
  * @returns {Number} length of dynamic part (in bytes)
  */
@@ -123736,7 +123736,7 @@ SolidityParam.prototype.withOffset = function (offset) {
  * @param {SolidityParam} result of combination
  */
 SolidityParam.prototype.combine = function (param) {
-    return new SolidityParam(this.value + param.value); 
+    return new SolidityParam(this.value + param.value);
 };
 
 /**
@@ -123768,8 +123768,8 @@ SolidityParam.prototype.offsetAsBytes = function () {
  */
 SolidityParam.prototype.staticPart = function () {
     if (!this.isDynamic()) {
-        return this.value; 
-    } 
+        return this.value;
+    }
     return this.offsetAsBytes();
 };
 
@@ -123801,7 +123801,7 @@ SolidityParam.prototype.encode = function () {
  * @returns {String}
  */
 SolidityParam.encodeList = function (params) {
-    
+
     // updating offsets
     var totalOffset = params.length * 32;
     var offsetParams = params.map(function (param) {
@@ -123927,13 +123927,13 @@ SolidityType.prototype.staticPartLength = function (name) {
 
 /**
  * Should be used to determine if type is dynamic array
- * eg: 
+ * eg:
  * "type[]" => true
  * "type[4]" => false
  *
  * @method isDynamicArray
  * @param {String} name
- * @return {Bool} true if the type is dynamic array 
+ * @return {Bool} true if the type is dynamic array
  */
 SolidityType.prototype.isDynamicArray = function (name) {
     var nestedTypes = this.nestedTypes(name);
@@ -123942,13 +123942,13 @@ SolidityType.prototype.isDynamicArray = function (name) {
 
 /**
  * Should be used to determine if type is static array
- * eg: 
+ * eg:
  * "type[]" => false
  * "type[4]" => true
  *
  * @method isStaticArray
  * @param {String} name
- * @return {Bool} true if the type is static array 
+ * @return {Bool} true if the type is static array
  */
 SolidityType.prototype.isStaticArray = function (name) {
     var nestedTypes = this.nestedTypes(name);
@@ -123957,7 +123957,7 @@ SolidityType.prototype.isStaticArray = function (name) {
 
 /**
  * Should return length of static array
- * eg. 
+ * eg.
  * "int[32]" => 32
  * "int256[14]" => 14
  * "int[2][3]" => 3
@@ -124032,7 +124032,7 @@ SolidityType.prototype.nestedTypes = function (name) {
  * Should be used to encode the value
  *
  * @method encode
- * @param {Object} value 
+ * @param {Object} value
  * @param {String} name
  * @return {String} encoded value
  */
@@ -124046,7 +124046,7 @@ SolidityType.prototype.encode = function (value, name) {
 
             var result = [];
             result.push(f.formatInputInt(length).encode());
-            
+
             value.forEach(function (v) {
                 result.push(self.encode(v, nestedName));
             });
@@ -124122,12 +124122,12 @@ SolidityType.prototype.decode = function (bytes, offset, name) {
             return result;
         })();
     } else if (this.isDynamicType(name)) {
-        
+
         return (function () {
             var dynamicOffset = parseInt('0x' + bytes.substr(offset * 2, 64));      // in bytes
             var length = parseInt('0x' + bytes.substr(dynamicOffset * 2, 64));      // in bytes
             var roundedLength = Math.floor((length + 31) / 32);                     // in int
-        
+
             return self._outputFormatter(new SolidityParam(bytes.substr(dynamicOffset * 2, ( 1 + roundedLength) * 64), 0));
         })();
     }
@@ -124250,13 +124250,13 @@ if (typeof XMLHttpRequest === 'undefined') {
 
 /**
  * Utils
- * 
+ *
  * @module utils
  */
 
 /**
  * Utility functions
- * 
+ *
  * @class [utils] config
  * @constructor
  */
@@ -124323,7 +124323,7 @@ module.exports = {
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file sha3.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -124388,7 +124388,7 @@ var sha3 = require('./sha3.js');
 var utf8 = require('utf8');
 
 var unitMap = {
-    'noether':      '0',    
+    'noether':      '0',
     'wei':          '1',
     'kwei':         '1000',
     'Kwei':         '1000',
@@ -124771,18 +124771,18 @@ var isAddress = function (address) {
  * @param {String} address the given HEX adress
  * @return {Boolean}
 */
-var isChecksumAddress = function (address) {    
+var isChecksumAddress = function (address) {
     // Check each case
     address = address.replace('0x','');
     var addressHash = sha3(address.toLowerCase());
 
-    for (var i = 0; i < 40; i++ ) { 
+    for (var i = 0; i < 40; i++ ) {
         // the nth letter should be uppercase if the nth digit of casemap is 1
         if ((parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i]) || (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !== address[i])) {
             return false;
         }
     }
-    return true;    
+    return true;
 };
 
 
@@ -124794,15 +124794,15 @@ var isChecksumAddress = function (address) {
  * @param {String} address the given HEX adress
  * @return {String}
 */
-var toChecksumAddress = function (address) { 
+var toChecksumAddress = function (address) {
     if (typeof address === 'undefined') return '';
 
     address = address.toLowerCase().replace('0x','');
     var addressHash = sha3(address);
     var checksumAddress = '0x';
 
-    for (var i = 0; i < address.length; i++ ) { 
-        // If ith character is 9 to f then make it uppercase 
+    for (var i = 0; i < address.length; i++ ) {
+        // If ith character is 9 to f then make it uppercase
         if (parseInt(addressHash[i], 16) > 7) {
           checksumAddress += address[i].toUpperCase();
         } else {
@@ -125115,7 +125115,7 @@ module.exports = Web3;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file allevents.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2014
@@ -125205,7 +125205,7 @@ module.exports = AllSolidityEvents;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file batch.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -125250,7 +125250,7 @@ Batch.prototype.execute = function () {
                 requests[index].callback(null, (requests[index].format ? requests[index].format(result.result) : result.result));
             }
         });
-    }); 
+    });
 };
 
 module.exports = Batch;
@@ -125573,7 +125573,7 @@ module.exports = ContractFactory;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file errors.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -125613,7 +125613,7 @@ module.exports = {
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file event.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2014
@@ -125684,7 +125684,7 @@ SolidityEvent.prototype.signature = function () {
 
 /**
  * Should be used to encode indexed params and options to one final object
- * 
+ *
  * @method encode
  * @param {Object} indexed
  * @param {Object} options
@@ -125715,7 +125715,7 @@ SolidityEvent.prototype.encode = function (indexed, options) {
         if (value === undefined || value === null) {
             return null;
         }
-        
+
         if (utils.isArray(value)) {
             return value.map(function (v) {
                 return '0x' + coder.encodeParam(i.type, v);
@@ -125737,17 +125737,17 @@ SolidityEvent.prototype.encode = function (indexed, options) {
  * @return {Object} result object with decoded indexed && not indexed params
  */
 SolidityEvent.prototype.decode = function (data) {
- 
+
     data.data = data.data || '';
     data.topics = data.topics || [];
 
     var argTopics = this._anonymous ? data.topics : data.topics.slice(1);
     var indexedData = argTopics.map(function (topics) { return topics.slice(2); }).join("");
-    var indexedParams = coder.decodeParams(this.types(true), indexedData); 
+    var indexedParams = coder.decodeParams(this.types(true), indexedData);
 
     var notIndexedData = data.data.slice(2);
     var notIndexedParams = coder.decodeParams(this.types(false), notIndexedData);
-    
+
     var result = formatters.outputLogFormatter(data);
     result.event = this.displayName();
     result.address = data.address;
@@ -125782,7 +125782,7 @@ SolidityEvent.prototype.execute = function (indexed, options, callback) {
             indexed = {};
         }
     }
-    
+
     var o = this.encode(indexed, options);
     var formatter = this.decode.bind(this);
     return new Filter(this._requestManager, o, watches.eth(), formatter, callback);
@@ -125843,7 +125843,7 @@ var extend = function (web3) {
         }
     };
 
-    ex.formatters = formatters; 
+    ex.formatters = formatters;
     ex.utils = utils;
     ex.Method = Method;
     ex.Property = Property;
@@ -126105,7 +126105,7 @@ module.exports = Filter;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file formatters.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @author Fabian Vogelsteller <fabian@ethdev.com>
@@ -126172,7 +126172,7 @@ var inputCallFormatter = function (options){
         options[key] = utils.fromDecimal(options[key]);
     });
 
-    return options; 
+    return options;
 };
 
 /**
@@ -126197,12 +126197,12 @@ var inputTransactionFormatter = function (options){
         options[key] = utils.fromDecimal(options[key]);
     });
 
-    return options; 
+    return options;
 };
 
 /**
  * Formats the output of a transaction to its proper values
- * 
+ *
  * @method outputTransactionFormatter
  * @param {Object} tx
  * @returns {Object}
@@ -126221,7 +126221,7 @@ var outputTransactionFormatter = function (tx){
 
 /**
  * Formats the output of a transaction receipt to its proper values
- * 
+ *
  * @method outputTransactionReceiptFormatter
  * @param {Object} receipt
  * @returns {Object}
@@ -126247,7 +126247,7 @@ var outputTransactionReceiptFormatter = function (receipt){
  * Formats the output of a block to its proper values
  *
  * @method outputBlockFormatter
- * @param {Object} block 
+ * @param {Object} block
  * @returns {Object}
 */
 var outputBlockFormatter = function(block) {
@@ -126275,7 +126275,7 @@ var outputBlockFormatter = function(block) {
 
 /**
  * Formats the output of a log
- * 
+ *
  * @method outputLogFormatter
  * @param {Object} log object
  * @returns {Object} log
@@ -126316,7 +126316,7 @@ var inputPostFormatter = function(post) {
         return (topic.indexOf('0x') === 0) ? topic : utils.fromUtf8(topic);
     });
 
-    return post; 
+    return post;
 };
 
 /**
@@ -126503,8 +126503,8 @@ SolidityFunction.prototype.call = function () {
     if (!callback) {
         var output = this._eth.call(payload, defaultBlock);
         return this.unpackOutput(output);
-    } 
-        
+    }
+
     var self = this;
     this._eth.call(payload, defaultBlock, function (error, output) {
         callback(error, self.unpackOutput(output));
@@ -126589,11 +126589,11 @@ SolidityFunction.prototype.request = function () {
     var callback = this.extractCallback(args);
     var payload = this.toPayload(args);
     var format = this.unpackOutput.bind(this);
-    
+
     return {
         method: this._constant ? 'eth_call' : 'eth_sendTransaction',
         callback: callback,
-        params: [payload], 
+        params: [payload],
         format: format
     };
 };
@@ -126725,7 +126725,7 @@ HttpProvider.prototype.send = function (payload) {
     try {
         result = JSON.parse(result);
     } catch(e) {
-        throw errors.InvalidResponse(request.responseText);                
+        throw errors.InvalidResponse(request.responseText);
     }
 
     return result;
@@ -126739,7 +126739,7 @@ HttpProvider.prototype.send = function (payload) {
  * @param {Function} callback triggered on end with (err, result)
  */
 HttpProvider.prototype.sendAsync = function (payload, callback) {
-    var request = this.prepareRequest(true); 
+    var request = this.prepareRequest(true);
 
     request.onreadystatechange = function() {
         if (request.readyState === 4) {
@@ -126749,13 +126749,13 @@ HttpProvider.prototype.sendAsync = function (payload, callback) {
             try {
                 result = JSON.parse(result);
             } catch(e) {
-                error = errors.InvalidResponse(request.responseText);                
+                error = errors.InvalidResponse(request.responseText);
             }
 
             callback(error, result);
         }
     };
-    
+
     try {
         request.send(JSON.stringify(payload));
     } catch(error) {
@@ -126803,7 +126803,7 @@ module.exports = HttpProvider;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file iban.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -127003,7 +127003,7 @@ Iban.prototype.address = function () {
         var base36 = this._iban.substr(4);
         var asBn = new BigNumber(base36, 36);
         return padLeft(asBn.toString(16), 20);
-    } 
+    }
 
     return '';
 };
@@ -127048,7 +127048,7 @@ var IpcProvider = function (path, net) {
     var _this = this;
     this.responseCallbacks = {};
     this.path = path;
-    
+
     this.connection = net.connect({path: this.path});
 
     this.connection.on('error', function(e){
@@ -127058,7 +127058,7 @@ var IpcProvider = function (path, net) {
 
     this.connection.on('end', function(){
         _this._timeout();
-    }); 
+    });
 
 
     // LISTEN FOR CONNECTION RESPONSES
@@ -127097,7 +127097,7 @@ Will parse the response and make an array out of it.
 IpcProvider.prototype._parseResponse = function(data) {
     var _this = this,
         returnValues = [];
-    
+
     // DE-CHUNKER
     var dechunkedData = data
         .replace(/\}[\n\r]?\{/g,'}|--|{') // }{
@@ -127201,7 +127201,7 @@ IpcProvider.prototype.send = function (payload) {
         try {
             result = JSON.parse(data);
         } catch(e) {
-            throw errors.InvalidResponse(data);                
+            throw errors.InvalidResponse(data);
         }
 
         return result;
@@ -127382,7 +127382,7 @@ Method.prototype.extractCallback = function (args) {
 
 /**
  * Should be called to check if the number of arguments is correct
- * 
+ *
  * @method validateArgs
  * @param {Array} arguments
  * @throws {Error} if it is not
@@ -127395,7 +127395,7 @@ Method.prototype.validateArgs = function (args) {
 
 /**
  * Should be called to format input args of method
- * 
+ *
  * @method formatInput
  * @param {Array}
  * @return {Array}
@@ -127449,7 +127449,7 @@ Method.prototype.attachToObject = function (obj) {
         obj[name[0]] = obj[name[0]] || {};
         obj[name[0]][name[1]] = func;
     } else {
-        obj[name[0]] = func; 
+        obj[name[0]] = func;
     }
 };
 
@@ -127513,8 +127513,8 @@ var DB = function (web3) {
     this._requestManager = web3._requestManager;
 
     var self = this;
-    
-    methods().forEach(function(method) { 
+
+    methods().forEach(function(method) {
         method.attachToObject(self);
         method.setRequestManager(web3._requestManager);
     });
@@ -127616,12 +127616,12 @@ function Eth(web3) {
 
     var self = this;
 
-    methods().forEach(function(method) { 
+    methods().forEach(function(method) {
         method.attachToObject(self);
         method.setRequestManager(self._requestManager);
     });
 
-    properties().forEach(function(p) { 
+    properties().forEach(function(p) {
         p.attachToObject(self);
         p.setRequestManager(self._requestManager);
     });
@@ -127928,7 +127928,7 @@ var Net = function (web3) {
 
     var self = this;
 
-    properties().forEach(function(p) { 
+    properties().forEach(function(p) {
         p.attachToObject(self);
         p.setRequestManager(web3._requestManager);
     });
@@ -128079,7 +128079,7 @@ var Shh = function (web3) {
 
     var self = this;
 
-    methods().forEach(function(method) { 
+    methods().forEach(function(method) {
         method.attachToObject(self);
         method.setRequestManager(self._requestManager);
     });
@@ -128089,11 +128089,11 @@ Shh.prototype.filter = function (fil, callback) {
     return new Filter(this._requestManager, fil, watches.shh(), formatters.outputPostFormatter, callback);
 };
 
-var methods = function () { 
+var methods = function () {
 
     var post = new Method({
-        name: 'post', 
-        call: 'shh_post', 
+        name: 'post',
+        call: 'shh_post',
         params: 1,
         inputFormatter: [formatters.inputPostFormatter]
     });
@@ -128267,7 +128267,7 @@ module.exports = {
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file namereg.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -128332,7 +128332,7 @@ Property.prototype.setRequestManager = function (rm) {
 
 /**
  * Should be called to format input args of method
- * 
+ *
  * @method formatInput
  * @param {Array}
  * @return {Array}
@@ -128368,7 +128368,7 @@ Property.prototype.extractCallback = function (args) {
 
 /**
  * Should attach function to method
- * 
+ *
  * @method attachToObject
  * @param {Object}
  * @param {Function}
@@ -128376,7 +128376,7 @@ Property.prototype.extractCallback = function (args) {
 Property.prototype.attachToObject = function (obj) {
     var proto = {
         get: this.buildGet(),
-        enumerable: true 
+        enumerable: true
     };
 
     var names = this.name.split('.');
@@ -128400,7 +128400,7 @@ Property.prototype.buildGet = function () {
     return function get() {
         return property.formatOutput(property.requestManager.send({
             method: property.getter
-        })); 
+        }));
     };
 };
 
@@ -128454,7 +128454,7 @@ module.exports = Property;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file requestmanager.js
  * @author Jeffrey Wilcke <jeff@ethdev.com>
  * @author Marek Kotewicz <marek@ethdev.com>
@@ -128521,7 +128521,7 @@ RequestManager.prototype.sendAsync = function (data, callback) {
         if (err) {
             return callback(err);
         }
-        
+
         if (!Jsonrpc.getInstance().isValidResponse(result)) {
             return callback(errors.InvalidResponse(result));
         }
@@ -128554,7 +128554,7 @@ RequestManager.prototype.sendBatch = function (data, callback) {
         }
 
         callback(err, results);
-    }); 
+    });
 };
 
 /**
@@ -128658,7 +128658,7 @@ RequestManager.prototype.poll = function () {
     }
 
     var payload = Jsonrpc.getInstance().toBatchPayload(pollsData);
-    
+
     // map the request id to they poll id
     var pollsIdMap = {};
     payload.forEach(function(load, index){
@@ -128688,7 +128688,7 @@ RequestManager.prototype.poll = function () {
             } else
                 return false;
         }).filter(function (result) {
-            return !!result; 
+            return !!result;
         }).filter(function (result) {
             var valid = Jsonrpc.getInstance().isValidResponse(result);
             if (!valid) {
@@ -128763,16 +128763,16 @@ var pollSyncing = function(self) {
 
         self.callbacks.forEach(function (callback) {
             if (self.lastSyncState !== sync) {
-                
+
                 // call the callback with true first so the app can stop anything, before receiving the sync data
                 if(!self.lastSyncState && utils.isObject(sync))
                     callback(null, true);
-                
+
                 // call on the next CPU cycle, so the actions of the sync stop can be processes first
                 setTimeout(function() {
                     callback(null, sync);
                 }, 0);
-                
+
                 self.lastSyncState = sync;
             }
         });
@@ -128827,7 +128827,7 @@ module.exports = IsSyncing;
     You should have received a copy of the GNU Lesser General Public License
     along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** 
+/**
  * @file transfer.js
  * @author Marek Kotewicz <marek@ethdev.com>
  * @date 2015
@@ -128846,7 +128846,7 @@ var exchangeAbi = require('../contracts/SmartExchange.json');
  * @param {Function} callback, callback
  */
 var transfer = function (eth, from, to, value, callback) {
-    var iban = new Iban(to); 
+    var iban = new Iban(to);
     if (!iban.isValid()) {
         throw new Error('invalid iban address');
     }
@@ -128854,7 +128854,7 @@ var transfer = function (eth, from, to, value, callback) {
     if (iban.isDirect()) {
         return transferToAddress(eth, from, iban.address(), value, callback);
     }
-    
+
     if (!callback) {
         var address = eth.icapNamereg().addr(iban.institution());
         return deposit(eth, from, address, value, iban.client());
@@ -128863,7 +128863,7 @@ var transfer = function (eth, from, to, value, callback) {
     eth.icapNamereg().addr(iban.institution(), function (err, address) {
         return deposit(eth, from, address, value, iban.client(), callback);
     });
-    
+
 };
 
 /**
