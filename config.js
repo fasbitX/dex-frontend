@@ -7,7 +7,7 @@ module.exports = {
   contractReserveToken: 'smart_contract/reservetoken.sol',
   contractBitDexAddrs: [
     { addr: '0xafeb70ae58052456772f0d5e7a42e13fcd2a429e', info: 'Deployed 03/08/2019' },
-    { addr: '0xbca13cbebff557143e8ad089192380e9c9a58c70', info: 'Deployed 08/10/2017 (Deprecated)' },
+    { addr: '0xbca13cbebff557143e8ad089192380e9c9a58c70', info: 'Deprecated' },
   ],
   ethTestnet: false,
   ethProvider: 'http://localhost:8545',
